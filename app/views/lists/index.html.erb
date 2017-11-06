@@ -1,12 +1,58 @@
-<ul>
+<div class="container">
+
+<ul class="list-group">
+<h3 class="text-center">To Do List </h3>
+
+ 
  <% @lists.each do |list| %>
-   <li>
-     <%= list.name %>
-     <%= link_to 'Show', list_path(list) %>
-     <%= link_to 'Edit', edit_list_path(list) %>
-     <%= link_to 'Destroy', list_path(list), method: :delete, data:{ confirm: "Are you sure?" } %>
+
+
+
+   <li class="list-group-item" id="1">
+  
+    <%= check_box_tag :done, true , list.done, data: { url: done_list_path(list), method: :post, remote: true } %>
+     <em class="text-danger inline"><%= list.date  %></em>
+     <span class="caret"></span>
+     <strong ><%=  list.name  %></strong> 
+
+     <span  class="navbar-right" ><%= link_to 'Edit', edit_list_path(list) %> </span>
+     <span class="glyphicon glyphicon-pencil navbar-right"></span>
+
+      <span  class="navbar-right" ><%= link_to 'Show', list_path(list) %></span>
+      <span class="glyphicon glyphicon-eye-open navbar-right"></span>
+
+    <% if (list.date - Date.today).to_i <= 0 %> 
+      
+      <span class="label label-default">overdue</span>
+   
+    <% else %>
+
+      <span class="navbar-right"><%= link_to 'Destroy', list_path(list), method: :delete, data:{ confirm: "Are you sure?" } %></span>
+      <span class="glyphicon glyphicon-trash navbar-right"></span>
+    
+    <% end %>
+   
+    
+   
    </li>
+
+
  <% end %>
 </ul>
 
-<%= link_to 'New Event', new_list_path %>
+
+<nav>
+  <ul class="pager">
+    <li><%= link_to ' New Event', new_list_path %></li>
+    
+  </ul>
+</nav>
+
+
+
+</div>
+ 
+
+
+
+

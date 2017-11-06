@@ -1,7 +1,26 @@
-<%= @list.name %>
-<br>
-<%= @list.date %>
 
-<%= simple_format(@list.note) %>
+<div class="container">
+<dl>
+  <dt><h3 class="lead"><%= @list.name %></h3></dt>
+  <br>
+  <blockquote>
+  <dd><span class="glyphicon glyphicon-calendar"></span><%= @list.date %></dd>
+  
+  <footer><dd><%= simple_format(@list.note) %></dd></footer>
+  </blockquote>
+</dl>
+</ul>
 
-<%= link_to 'Back to index', lists_path %>
+<nav>
+  <ul class="pager">
+    <li><%= link_to ' Back to index', lists_path %></li>
+    
+  </ul>
+</nav>
+
+
+
+</div>
+
+
+  

@@ -1,22 +1,56 @@
-<% if @list.errors.present? %>
-  <ul>
-    <% @list.errors.each do |error, message| %>
-      <li> <%= "#{error.capitalize}  #{message}" %></li>
-    <% end %>
-  </ul>
-<% end %>
 
 
-<%= form_for @list do |f| %>
-  <%= f.label :name, "Event" %>
-  <%= f.text_field :name %>
-
-  <%= f.label :date, "Due Date" %>
-  <%= f.text_field :date %>
-
-  <%= f.label :note, "Note" %>
-  <%= f.text_area :note %>
+<div class="form container">
 
 
-  <%= f.submit  %>
-<% end %>
+
+
+
+  <%= form_for @list do |f| %>
+
+    <div class="form-group">
+      <%= f.label :name, "Event" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date, "Due Date" %>
+      <%= f.text_field :date, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :note, "Note" %>
+      <%= f.text_area :note, class: "form-control" %>
+    </div>
+
+      <style>
+          input {
+      -webkit-border-radius: 20px;
+      border-radius: 20px; 
+     
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      padding-top: 5px;
+      padding-bottom: 5px;
+      }
+      </style>
+
+    <nav>
+     <ul class="pager" >
+       <li class="text-primary"><%= f.submit  %></li>
+      
+       <li><%= link_to ' Cancel', lists_url %></li>
+    
+     </ul>
+    </nav>
+  
+  <% end %>
+
+  <% if @list.errors.present? %>
+    <ul>
+      <% @list.errors.each do |error, message| %>
+        <li class="text-danger"><%= "#{error.capitalize}  #{message}" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  
+</div>

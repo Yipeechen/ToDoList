@@ -1,8 +1,9 @@
 class ListsController < ApplicationController
-  before_action :set_list, :only => [:show, :edit, :update, :destroy]
+  before_action :set_list, :only => [:show, :edit, :update, :destroy, :done]
 
     def index
       @lists = List.all
+      @lists = List.all.order(date: :desc)
     end
 
     def new
@@ -18,6 +19,7 @@ class ListsController < ApplicationController
       end
     end
 
+ 
 
     def update
 
@@ -33,6 +35,11 @@ class ListsController < ApplicationController
 
       redirect_to lists_url
     end
+
+    def done
+      @list.update(done: !(@list.done))
+    end
+
 
     private
 
