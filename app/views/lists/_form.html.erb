@@ -1,10 +1,6 @@
 
 
-<div class="form container">
-
-
-
-
+<div class="col-md-6 col-md-offset-3">
 
   <%= form_for @list do |f| %>
 
@@ -14,8 +10,9 @@
     </div>
 
     <div class="form-group">
-      <%= f.label :date, "Due Date" %>
-      <%= f.text_field :date, class: "form-control" %>
+      <%= f.label :date, "Due Date" %><br>
+      
+      <%= f.date_select :date %>
     </div>
 
     <div class="form-group">
@@ -24,11 +21,8 @@
     </div>
 
       <style>
-          input {
-      -webkit-border-radius: 20px;
-      border-radius: 20px; 
-     
-      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      input {
+      border-radius: 20px;
       padding-top: 5px;
       padding-bottom: 5px;
       }
@@ -37,20 +31,28 @@
     <nav>
      <ul class="pager" >
        <li class="text-primary"><%= f.submit  %></li>
-      
        <li><%= link_to ' Cancel', lists_url %></li>
-    
      </ul>
     </nav>
   
   <% end %>
 
+
   <% if @list.errors.present? %>
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    <strong>Some errors here !</strong>
+
     <ul>
       <% @list.errors.each do |error, message| %>
         <li class="text-danger"><%= "#{error.capitalize}  #{message}" %></li>
       <% end %>
     </ul>
+  </div>
   <% end %>
-  
+
+</div>
+
+
 </div>
